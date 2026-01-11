@@ -1,7 +1,7 @@
 ---
 mode: subagent
 description: Adversarial reviewer that challenges researcher's research claims and verifies evidence
-model: openai/gpt-5.2
+model: "zhipuai/glm-4.7"
 maxSteps: 15
 ---
 

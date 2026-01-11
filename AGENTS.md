@@ -26,17 +26,27 @@ Prioritize structural edge over statistical methods:
 
 ## Slash Commands
 
+none
 
 ## Adversarial Verification Protocol
 
+none
 
 ## Checkpoint Memory System
 
+none
 
 ## Project Structure
 
 ### Persistant Structure
 
+```
+./trading/
+└──{researchTitle}/
+   ├──{reportTitle}.ipynb
+   ├──figures
+   └──report.md
+```
+
 ### Ephemeral Structure
 
-## Command Task Chunk

@@ -1,7 +1,7 @@
 ---
 mode: subagent
 description: Scientific research agent with Python REPL and structured output markers
-model: openai/gpt-5.2
+model: "zhipuai/glm-4.7"
 maxSteps: 50
 ---
 
