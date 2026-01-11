@@ -3,7 +3,7 @@
   "theme": "opencode",
   "model": "openai/gpt-5.2",
   "small_model": "openai/gpt-5.1-codex-mini",
-  // "default_agent": "Gyoshu",
+  "default_agent": "master",
   "autoupdate": true,
   "plugin": [
     "oh-my-opencode"
