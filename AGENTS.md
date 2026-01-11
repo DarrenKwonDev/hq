@@ -41,12 +41,18 @@ none
 ### Persistant Structure
 
 ```
-./trading/
-└──{researchTitle}/
-   ├──{reportTitle}.ipynb
-   ├──figures
+./playbook/
+└──{[TITLE]}/
+   ├──{[TITLE]}.ipynb
+   ├──figures // plot, img etc
+   ├──data    // process data from raw data
+   ├──config  // weight, fee, other hyperparams and constants
+   │  └──hyperparam.yaml
+   │  └──constants.yaml
    └──report.md
 ```
+
+- each playbook's {title} has own virtual env in python.
 
 ### Ephemeral Structure
 

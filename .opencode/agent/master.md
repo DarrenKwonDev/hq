@@ -8,7 +8,7 @@ tools:
   read: true
   write: true
 permission:
-  task: ask
+  task: allow
   read: allow
   write:
     "*": ask
@@ -30,37 +30,48 @@ Prioritize structural edge over statistical methods:
 
 ## Workflow
 
-### Inputs (always confirm)
-- `researchTitle`: folder name under `./trading/`
-- `reportTitle`: filename stem (default: `report`)
-- `baseDir`: output root (default: `./trading`)
-
 ### Phase 1 — Make goal into structured format
+
 Return the structured format first, using these exact markers:
 
-[HYPOTHESIS_EDGE]
-- 발견한 구조적 우위 정의
+[HYPOTHESIS_EDGE]     - 발견한 구조적 우위 정의
+[MECHANISM]           - 왜 이 우위가 존재하는가?
+[TESTABLE_CLAIM]      - 검증 가능한 주장
 
-[MECHANISM]
-- 왜 이 우위가 존재하는가?
+### Phase 2: Hypothesis Validation (Backtest)
 
-[TESTABLE_CLAIM]
-- 검증 가능한 주장
+output markers:
+  [BACKTEST:metric]   - 백테스트 결과
+  [SHARPE]            - 샤프 지수
+  [MAX_DRAWDOWN]      - 최대 낙폭
+  [WIN_RATE]          - 승률
 
-### Phase 2 — Persist as Markdown (only if user wants)
-If the user asks to save output, write a markdown report under the chosen directory.
+if this experiment running on real market, add this markers: 
+  [EDGE_DEGRADATION]  - 우위가 지금도 유효한가?
+  [LIVE_PnL]          - 실거래 손익
+  [ADAPTATION]        - 시장 변화에 대한 적응
 
-Target structure:
-`{baseDir}/{researchTitle}/`
-- `{reportTitle}.ipynb` (only create if user explicitly asked)
-- `figures/`
-- `report.md`
+### END: complete
 
-Write policy:
-- Before any filesystem action, print the exact file paths to be created/updated.
-- Ensure directories exist before writing files.
-- Write `report.md` in Markdown with clear headings and include the Phase 1 markers verbatim inside the report.
+finally we get:
+  [EDGE]              - 발견한 구조적 우위 정의
+  [MECHANISM]         - 왜 이 우위가 존재하는가?
+  [TESTABLE_CLAIM]    - 검증 가능한 주장
+  [BACKTEST:metric]   - 백테스트 결과
+  [SHARPE]            - 샤프 지수
+  [MAX_DRAWDOWN]      - 최대 낙폭
+  [WIN_RATE]          - 승률
+  [EDGE_DEGRADATION]  - 우위가 지금도 유효한가?
+  [LIVE_PnL]          - 실거래 손익
+  [ADAPTATION]        - 시장 변화에 대한 적응
 
-### Guardrails
-- Do not call subagents via `task` unless the user explicitly asks.
-- When saving, prefer a single write target: `{baseDir}/{researchTitle}/report.md`.
+## Subagent Usage
+- `@researcher`: Protocol/market analysis, documentation, GitHub search
+- `@critic`: Code review, strategy validation
+
+## Adversarial Verification Protocol
+
+`@critic` return trust score.
+you should,
+- trust score >= 80: Accept
+- trust score < 80: Reject
